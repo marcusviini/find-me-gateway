@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+message Customer {
+    int32 id = 1;
+    string nome = 2;
+}
+
+message CreateCustomerRequest {
+    string nome = 1;
+}
+
+message CreateCustomerResponse {
+    string message = 1;
+    string error = 2;
+}
+
+
+message FindCustomerRequest {
+    string nome = 1;
+}
+
+message FindCustomerResponse {
+    string message = 1;
+    repeated Customer customers = 2;
+    string error = 3;
+}
+
+
+message FindAllCustomerRequest {
+
+}
+
+message FindAllCustomerResponse {
+    string message = 1;
+    repeated Customer customers = 2;
+    string error = 3;
+}
+
+
+
+service customerService {
+    rpc  create (CreateCustomerRequest) returns (CreateCustomerResponse);
+    rpc  find (FindCustomerRequest) returns (FindCustomerResponse);
+    rpc  findAll (FindAllCustomerRequest) returns (FindAllCustomerResponse);
+}
